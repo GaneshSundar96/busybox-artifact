@@ -14,7 +14,7 @@ FULL_IMAGE_NAME="$ARTIFACTORY_URL/$ARTIFACTORY_REPO/$IMAGE_NAME:$TAG"
 # Log in to Artifactory Docker registry
 echo "Logging into Artifactory..."
 
-sudo docker login $ARTIFACTORY_URL -u $USERNAME -p $PASSWORD
+echo Sundar@96 | sudo -S docker login $ARTIFACTORY_URL -u $USERNAME -p $PASSWORD
 
 if [ $? -ne 0 ]; then
     echo "Failed to log in to Artifactory"
