@@ -13,8 +13,9 @@ FULL_IMAGE_NAME="$ARTIFACTORY_URL/$ARTIFACTORY_REPO/$IMAGE_NAME:$TAG"
 
 # Log in to Artifactory Docker registry
 echo "Logging into Artifactory..."
+export SUDO_ASKPASS="/usr/bin/zenity"
 
-echo password | sudo -S docker login $ARTIFACTORY_URL -u $USERNAME -p $PASSWORD
+sudo -A docker login $ARTIFACTORY_URL -u $USERNAME -p $PASSWORD
 
 if [ $? -ne 0 ]; then
     echo "Failed to log in to Artifactory"
