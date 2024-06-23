@@ -13,7 +13,8 @@ FULL_IMAGE_NAME="$ARTIFACTORY_URL/$ARTIFACTORY_REPO/$IMAGE_NAME:$TAG"
 
 # Log in to Artifactory Docker registry
 echo "Logging into Artifactory..."
-docker login $ARTIFACTORY_URL -u $USERNAME -p $PASSWORD
+
+sudo docker login $ARTIFACTORY_URL -u $USERNAME -p $PASSWORD
 
 if [ $? -ne 0 ]; then
     echo "Failed to log in to Artifactory"
@@ -22,7 +23,7 @@ fi
 
 # Build the image
 echo "Building Docker image..."
-docker build -t $FULL_IMAGE_NAME .
+sudo docker build -t $FULL_IMAGE_NAME .
 
 if [ $? -ne 0 ]; then
     echo "Failed to build Docker image"
@@ -31,7 +32,7 @@ fi
 
 # Push the image
 echo "Pushing image to Artifactory..."
-docker push $FULL_IMAGE_NAME
+sudo docker push $FULL_IMAGE_NAME
 
 if [ $? -ne 0 ]; then
     echo "Failed to push Docker image to Artifactory"
@@ -41,4 +42,4 @@ fi
 echo "Image pushed to Artifactory successfully."
 
 # Optional: logout from Artifactory
-docker logout $ARTIFACTORY_URL
+sudo docker logout $ARTIFACTORY_URL
